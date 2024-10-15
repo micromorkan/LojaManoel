@@ -31,7 +31,6 @@ namespace LojaManoel.Service
                         produto.Dimensoes.Largura <= caixa.Largura && 
                         produto.Dimensoes.Comprimento <= caixa.Comprimento && 
                         produtosParaCaixa.Sum(p => p.Dimensoes.Volume) + produto.Dimensoes.Volume <= caixa.Volume &&
-                        ProdutoCabeComRotacao(produto, caixa) &&
                         !pularProduto)
                     {
                         produtosParaCaixa.Add(produto);
@@ -62,16 +61,6 @@ namespace LojaManoel.Service
             }
 
             return resultado;
-        }
-
-        public bool ProdutoCabeComRotacao(Produto produto, Caixa caixa)
-        {
-            return (produto.Dimensoes.Altura <= caixa.Altura && produto.Dimensoes.Largura <= caixa.Largura && produto.Dimensoes.Comprimento <= caixa.Comprimento) ||
-                   (produto.Dimensoes.Altura <= caixa.Altura && produto.Dimensoes.Comprimento <= caixa.Largura && produto.Dimensoes.Largura <= caixa.Comprimento) ||
-                   (produto.Dimensoes.Largura <= caixa.Altura && produto.Dimensoes.Altura <= caixa.Largura && produto.Dimensoes.Comprimento <= caixa.Comprimento) ||
-                   (produto.Dimensoes.Largura <= caixa.Altura && produto.Dimensoes.Comprimento <= caixa.Largura && produto.Dimensoes.Altura <= caixa.Comprimento) ||
-                   (produto.Dimensoes.Comprimento <= caixa.Altura && produto.Dimensoes.Altura <= caixa.Largura && produto.Dimensoes.Largura <= caixa.Comprimento) ||
-                   (produto.Dimensoes.Comprimento <= caixa.Altura && produto.Dimensoes.Largura <= caixa.Largura && produto.Dimensoes.Altura <= caixa.Comprimento);
         }
     }
 }
